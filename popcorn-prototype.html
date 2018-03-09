@@ -1,0 +1,49 @@
+<html>
+<head>
+<title> popcorn prototype</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="box"> 
+	<span style="display:block">
+		<div>Who are you? 
+			<input id="you" type="text"/>
+		</div>
+		<button id="free">!免費轉蛋</button>
+		<button id="cash">!消耗爆米花轉蛋</button></br>
+		<button id="put">消耗爆米花商品換自訂文字的蛋</button> 自定文字內容: <input id="egg" type="text"/>
+		
+		
+	</span>
+
+	<span id="show"></span>
+</div>
+<script>
+var items = ["飛高高", "睡覺覺", "氣撲撲", "吃飽飽"];
+function getItem() {
+	return items[Math.floor(Math.random()*items.length)]
+}
+$("#free").click(function() {
+	txt = " <b>" + $("#you").val() + "</b> " + getItem();
+	//alert(txt);
+	$("#show").append(txt + "<br/>");
+});
+
+$("#cash").click(function() {
+	txt = $("#you").val() + getItem();
+	alert("google小姐幫忙念，或放到實況畫面上: 「" + txt + "」");
+});
+
+$("#put").click(function() {
+	egg = $("#egg").val();
+	if (egg.length > 0) {
+		items.push(egg);
+		$("#show").append("<span style=\"color:green\">新的蛋桶裡面有 ( " + items + " )<br/></span>");
+		$("#egg").val("");
+	}
+	
+});
+</script>
+</body>
+</html>
